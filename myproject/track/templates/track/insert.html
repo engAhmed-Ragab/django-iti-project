@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%block title%} Insert Track {%endblock%}
+{%block body%}
+{%block content%}
+<h2>Add Track</h2>
+    <table>
+        <tr>
+            <td><a href="{% url 'alltracks' %}">Tracks</a>
+                <a href="{% url 'alltrainees' %}">Trainees</a>
+            </td>
+        </tr>
+    </table>
+<form  method="post">
+    {% csrf_token %}
+    <label>Name:</label>
+    <input type="text" name="name" required><br>
+    <label>Description:</label>
+    <textarea name="description"></textarea><br>
+    <button type="submit">Save</button>
+</form>
+{%endblock%}
+{%endblock%}

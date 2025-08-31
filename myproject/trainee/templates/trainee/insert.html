@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    Insert Trainee 
+{% endblock %}
+{%block body%}
+{% block content %}
+    <table>
+        <tr>
+            <td><a href="{% url 'alltracks' %}">Tracks</a>
+                <a href="{% url 'alltrainees' %}">Trainees</a>
+            </td>
+        </tr>
+    </table>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for="Trainee">Name</label>
+  <input id="Trainee" name="Trainee" type="text" required>
+    <br><br>
+  <label for="Email">Email</label>
+  <input id="Email" name="Email" type="email">
+    <br><br>
+  <label for="Image">Image</label>
+  <input id="Image" name="Image" type="file">
+
+  <br><br>
+  <select name="Track" required>
+    <option value="" disabled selected>Select Track</option>
+    {% for track in tracks %}
+    <option value="{{ track.id }}">{{ track.name }}</option>
+    {% empty %}
+    <option disabled>(No tracks found)</option>
+    {% endfor %}
+    </select>
+  <br><br>
+
+  <button type="submit">Save</button>
+</form>
+{%endblock%}
+{% endblock %}

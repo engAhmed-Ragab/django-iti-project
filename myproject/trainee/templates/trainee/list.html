@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} Trainee List {% endblock %}
+{% load static %}
+{%block body%}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<h1>All Trainees</h1>
+
+    <table>
+        <tr>
+            <td><a href="{% url 'alltracks' %}">Tracks</a>
+                <a href="{% url 'alltrainees' %}">Trainees</a>
+                <a href="{% url 'inserttrainee' %}">Insert New Trainee</a>
+            </td>
+        </tr>
+    </table>
+    <table border="1" width="100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Track</th>
+            <th>Action</th>
+        </tr>
+        {% for trainee in trainees %}
+        <tr>
+            <td>{{trainee.id}}</td>
+            <td>{{trainee.name}}</td>
+            <td>{{trainee.email}}</td>
+            <td><img src="{{ trainee.image.url }}" width="100" height="100"></td>
+            <td>{% if trainee.status %}Active{% else %}Inactive{% endif %}</td>
+            <td>{{trainee.trackid.name}}</td>
+            <td>
+            <a href="{% url 'deletetrainee' trainee.id %}">Delete</a> 
+            <a href="{% url 'updatetrainee' trainee.id %}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% endblock %}

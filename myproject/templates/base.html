@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base-Parent{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {%block body%}
+    <table   width="100%">
+        <tr>
+            <td><a href="{% url 'alltracks' %}">Tracks</a>
+                <a href="{% url 'alltrainees' %}">Trainees</a>
+            </td>
+        </tr>
+        <tr>{% block content %}
+            <td>Content</td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>Footer</td>
+        </tr>
+    </table>
+    {%endblock%}
+</body>
+</html>

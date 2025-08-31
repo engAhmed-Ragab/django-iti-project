@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Track List {% endblock %}
+{%block body%}
+{% block content %} 
+<h1>All Tracks</h1>
+
+    <table>
+        <tr>
+            <td><a href="{% url 'alltracks' %}">Tracks</a>
+                <a href="{% url 'alltrainees' %}">Trainees</a>
+                <a href="{% url 'inserttrack' %}">Insert New Track</a>
+            </td>
+        </tr>
+    </table>
+    <table border="1" width="100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        {% for track in tracks %}
+        <tr>
+            <td>{{track.id}}</td>
+            <td>{{track.name}}</td>
+            <td>{{track.description }}</td>
+            <td>
+                <a href="/deletetrack/{{track.id}}">Delete</a>
+                <a href="/updatetrack/{{track.id}}">Update</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+{% endblock %}
